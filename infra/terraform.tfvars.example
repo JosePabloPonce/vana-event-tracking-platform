@@ -1,0 +1,4 @@
+aws_region   = "us-east-1"
+project_name = "vana-events"
+environment  = "dev"
+event_api_key = "change-me-local-dev-key"
