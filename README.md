@@ -21,11 +21,11 @@ Client (Web/Mobile)
 API Gateway (HTTP API)
 │
 ▼
-Lambda (Recepción, validación, enriquecimiento)
+Lambda (Recepción, validación, procesamiento)
 │
 ├── Éxito → Kinesis Firehose → S3 (GZIP, particionado)
-│
-└── Error → SQS (DLQ)
+├── Error → SQS (DLQ)
+└── Logs → CloudWatch
 ```
 
 ---
