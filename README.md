@@ -15,7 +15,7 @@ La solución está construida utilizando servicios gestionados de AWS y Terrafor
 Flujo general:
 
 ```
-Client (Web/Mobile)
+Cliente (Web/Mobile)
 │
 ▼
 API Gateway (HTTP API)
