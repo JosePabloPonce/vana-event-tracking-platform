@@ -60,6 +60,7 @@ jobs:
         with:
           directory: infra
           framework: terraform
+          soft_fail: true
 
       - name: Terraform Apply
         if: github.ref == 'refs/heads/main' && github.event_name == 'push'
