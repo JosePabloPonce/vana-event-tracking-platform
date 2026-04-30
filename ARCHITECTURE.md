@@ -20,7 +20,7 @@ El flujo está diseñado para ser altamente disponible, escalable y resiliente a
 2. API Gateway recibe la solicitud y la enruta hacia una función Lambda.
 3. La función Lambda:
    - Valida el evento
-   - Agrega metadatos (event_id, received_at)
+   - Agrega metadatos (`event_id`, `received_at`)
    - Procesa la información
 4. Si el evento es válido:
    - Se envía a Kinesis Firehose (`PutRecord`)
@@ -50,12 +50,12 @@ Ejemplo:
 }
 ```
 
-### Ejemplos de event_type:
+### Ejemplos de `event_type`:
 
-- sign_in
-- purchase_completed
-- balance_checked
-- profile_updated
+- `sign_in`
+- `purchase_completed`
+- `balance_checked`
+- `profile_updated`
 
 El sistema no restringe los tipos de eventos a una lista fija. Se valida únicamente que event_type sea un string no vacío, permitiendo flexibilidad para agregar nuevos eventos sin cambios en la infraestructura.
 
@@ -69,7 +69,7 @@ Actúa como punto de entrada para recibir eventos desde clientes externos median
 
 ### AWS Lambda
 
-Encargada de la validación, procesamiento y ruteo de eventos hacia los sistemas de almacenamiento o fallback.
+Encargada de la validación, procesamiento y envío de eventos hacia Firehose o hacia la DLQ en caso de error.
 
 ### Kinesis Data Firehose
 
@@ -123,7 +123,7 @@ Se distingue claramente entre:
 
 ## Disponibilidad
 
-- Arquitectura sin punto único de falla en el path de ingesta
+- Arquitectura sin punto único de falla en el flujo de recepción de eventos
 - Servicios completamente administrados por AWS
 
 ---

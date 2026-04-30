@@ -21,7 +21,7 @@ Client (Web/Mobile)
 API Gateway (HTTP API)
 │
 ▼
-Lambda (Ingesta, validación, enriquecimiento)
+Lambda (Recepción, validación, enriquecimiento)
 │
 ├── Éxito → Kinesis Firehose → S3 (GZIP, particionado)
 │
@@ -59,7 +59,7 @@ Lambda (Ingesta, validación, enriquecimiento)
 
 ### SQS (DLQ)
 
-- Almacena eventos que fallaron en la ingesta
+- Almacena eventos que fallaron en la recepción
 - Permite análisis o reprocesamiento posterior
 
 ---
@@ -159,7 +159,7 @@ Para este proyecto se eligió la opción (A): despliegue real en AWS.
 
 Esto permite validar el sistema end-to-end, incluyendo:
 
-- Ingesta de eventos
+- Recepción de eventos
 - Persistencia en S3
 - Manejo de errores con DLQ
 - Observabilidad mediante CloudWatch
@@ -269,7 +269,7 @@ Para verificar que el flujo funciona correctamente:
 
 En caso de fallos:
 
-- Errores en la ingesta quedan registrados en CloudWatch Logs
+- Errores en la recepción quedan registrados en CloudWatch Logs
 - La DLQ permite inspección y reprocesamiento de eventos fallidos
 
 Escenario típico:
