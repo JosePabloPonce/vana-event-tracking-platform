@@ -20,7 +20,7 @@ El flujo está diseñado para ser altamente disponible, escalable y resiliente a
 2. API Gateway recibe la solicitud y la enruta hacia una función Lambda.
 3. La función Lambda:
    - Valida el evento
-   - Agrega metadatos (event_id, timestamp)
+   - Agrega metadatos (event_id, received_at)
    - Procesa la información
 4. Si el evento es válido:
    - Se envía a Kinesis Firehose (`PutRecord`)
@@ -28,6 +28,36 @@ El flujo está diseñado para ser altamente disponible, escalable y resiliente a
 5. Si ocurre un error:
    - El evento se envía a SQS (DLQ) para análisis posterior
 6. Todos los eventos procesados generan logs en CloudWatch
+
+---
+
+## Formato y tipos de eventos
+
+Los eventos son objetos JSON enviados por los clientes.
+
+Ejemplo:
+
+```json
+{
+  "event_type": "sign_in",
+  "user_id": "user_123",
+  "timestamp": "2026-04-29T21:00:00Z",
+  "source": "web",
+  "schema_version": "1.0",
+  "properties": {
+    "device": "desktop"
+  }
+}
+```
+
+### Ejemplos de event_type:
+
+- sign_in
+- purchase_completed
+- balance_checked
+- profile_updated
+
+El sistema no restringe los tipos de eventos a una lista fija. Se valida únicamente que event_type sea un string no vacío, permitiendo flexibilidad para agregar nuevos eventos sin cambios en la infraestructura.
 
 ---
 
