@@ -1,4 +1,4 @@
-# Event Tracking Platform
+# Plataforma de Tracking de Eventos de Usuarios
 
 ## Descripción general
 
